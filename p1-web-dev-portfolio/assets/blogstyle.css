@@ -1,0 +1,91 @@
+* {
+
+    padding: 0;
+  
+    margin: 0;
+  
+    box-sizing: border-box;
+  
+    text-decoration: none;
+  
+    list-style: none;
+  
+    font-family: "Orbitron", sans-serif;
+  
+}
+  
+html {
+  
+    scroll-behavior: smooth;
+  
+}
+
+.banner img {
+
+  width: 100%;
+
+  height: 15vw;
+
+}
+
+.banner h1 {
+
+  color: white;
+
+  position: absolute;
+
+  top: 3vw;
+
+  right: 43%;
+
+  font-size: 5vw;
+
+}
+
+.entries {
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 10vw 20vw;
+
+}
+
+.log {
+
+  font-size: 2vw;
+
+}
+
+p {
+
+  font-size: 1.5vw;
+
+  padding: 0.5vw;
+
+}
+
+@media only screen and (max-width: 450px) {
+
+  .entries {
+
+    padding: 5vw 5vw;
+
+  }
+
+  .log {
+
+    font-size: 4vw;
+
+  }
+
+  p {
+
+    font-size: 3vw;
+
+    padding: 1vw;
+
+  }
+    
+}
