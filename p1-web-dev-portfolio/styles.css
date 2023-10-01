@@ -1,0 +1,902 @@
+* {
+
+  padding: 0;
+
+  margin: 0;
+
+  box-sizing: border-box;
+
+  text-decoration: none;
+
+  list-style: none;
+
+  font-family: "Orbitron", sans-serif;
+
+}
+
+html {
+
+  scroll-behavior: smooth;
+
+}
+
+.nav-bar {
+  
+  position: fixed;
+
+  height: 60px;
+
+  width: 100%;
+
+  top: 0;
+
+  z-index: 10000;
+
+  background-color: black;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.nav-logo img {
+
+  height: 60px;
+
+}
+
+.burger-menu {
+
+  cursor: pointer;
+
+  display: block;
+
+  position: absolute;
+
+  top: 15px;
+
+  right: 20px;
+
+  z-index: 2;
+
+}
+
+.bgr-line {
+
+  width: 25px;
+
+  height: 3px;
+
+  background-color: white;
+
+  margin: 5px 0;
+
+  transition: 0.4s;
+
+}
+
+#menu-toggle {
+
+  display: none;
+
+}
+
+#menu-toggle:checked + .burger-menu .bar:nth-child(1) {
+
+  transform: rotate(-45deg) translate(-5px, 6px);
+
+}
+
+#menu-toggle:checked + .burger-menu .bar:nth-child(2) {
+
+  opacity: 0;
+
+}
+
+#menu-toggle:checked + .burger-menu .bar:nth-child(3) {
+
+  transform: rotate(45deg) translate(-5px, -6px);
+
+}
+
+.menu-list {
+
+  background-color: rgb(0, 0, 0, 0.7);
+
+  position: absolute;
+
+  top: -330%;
+
+  height: 200px;
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  transition: 0.4s;
+
+  z-index: 1;
+
+}
+
+.menu-list ul {
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+.menu-list li {
+
+  padding: 10px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+}
+
+#menu-toggle:checked + .burger-menu ~ .menu-list {
+
+  top: 60px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-content: space-between;
+
+  align-items: center;
+
+}
+
+.txt-white {
+
+  color: white;
+
+}
+
+.name {
+
+  margin: 30px 5px 30px 5px;
+
+  text-transform: uppercase;
+
+  background-image: linear-gradient(
+
+    -90deg,
+
+    #231557 0%,
+
+    #44107a 29%,
+
+    #e7ff13c5 100%,
+
+    #f5ee2ef8 60%
+
+  );
+
+  background-size: auto auto;
+
+  background-clip: border-box;
+
+  background-size: 200% auto;
+
+  color: #fff;
+
+  background-clip: text;
+
+  text-emphasis-color: transparent;
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation: textclip 1s linear 2;
+
+  display: inline-block;
+
+}
+
+.sxn-name {
+
+  background-image: linear-gradient(
+
+    -90deg,
+
+    #231557 0%,
+
+    #44107a 29%,
+
+    #e7ff13c5 100%,
+
+    #f5ee2ef8 60%
+
+  );
+
+  background-size: auto auto;
+
+  background-clip: border-box;
+
+  background-size: 200% auto;
+
+  color: #fff;
+
+  text-emphasis-color: transparent;
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  animation: textclip 1s linear infinite;
+
+}
+
+@keyframes textclip {
+
+  to {
+
+    background-position: 200% center;
+
+  }
+
+}
+
+.content {
+
+  width: 100%;
+
+}
+
+#welcome-page {
+
+  margin-top: 60px;
+
+  height: 600px;
+
+  background-image: url("https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg?w=826&t=st=1695999824~exp=1696000424~hmac=46499b6766339356d7de0e6a84a7561c310b94eae75516c66a1d500b1b40d276");
+
+  background-size: cover;
+
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+}
+
+.animation-container {
+
+  padding: 180px 0px 100px 0px;
+
+  display: flex;
+
+  justify-content: center;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  opacity: 0;
+
+  font-size: 13px;
+  
+  animation: fadeIn 1s ease-in-out forwards;
+
+}
+
+@keyframes fadeIn {
+
+  0% {
+
+    opacity: 0;
+    
+    transform: translateY(-30px);
+
+  }
+
+  100% {
+
+    opacity: 1;
+    
+    transform: translateY(0);
+
+  }
+
+}
+
+#about-me {
+
+  height: 500px;
+
+  background-color: rgba(230, 235, 235, 0.959);
+
+  grid-area: about-me;
+
+}
+
+.sxn-line {
+
+  width: 50px;
+
+  height: 3px;
+
+  background-color: rgba(255, 166, 0, 0.966);
+
+  margin-inline: auto;
+
+    margin-inline-start: auto;
+
+    margin-inline-end: auto;
+
+  margin-bottom: 50px;
+
+  border-radius: 30px;
+
+}
+
+h3 {
+
+  font-size: 20px;
+
+  text-transform: uppercase;
+
+  text-align: center;
+
+  margin: 0px 0px 5px 0px;
+
+  padding: 70px 0px 10px 0px;
+
+}
+
+.sxn-container {
+
+  width: 92%;
+
+  margin-inline: auto;
+
+    margin-inline-start: auto;
+
+    margin-inline-end: auto;
+
+}
+
+.sxn-container p {
+
+  text-align: center;
+
+  margin-bottom: 40px;
+
+  font-size: 5vw;
+
+  font-family: "Roboto", sans-serif;
+
+}
+
+#resume {
+
+  height: auto;
+
+  background-image: url("https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg?w=826&t=st=1695999824~exp=1696000424~hmac=46499b6766339356d7de0e6a84a7561c310b94eae75516c66a1d500b1b40d276");
+
+  background-size: cover;
+
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+  padding: 100px;
+
+}
+
+a.button {
+
+  font-size: 3vw;
+
+  display: inline-block;
+
+  padding: 1vw 2vw;
+
+  text-decoration: none;
+
+  border: 2px solid #ec9c08;
+
+  background-color: rgba(230, 235, 235, 0);
+
+  color: #a5a3a3;
+
+  border-radius: 5px;
+
+  text-align: center;
+  
+  cursor: pointer;
+  
+  transition: background-color 0.3s, color 0.3s;
+
+}
+
+a.button:hover {
+
+  background-color: #ffa600 ;
+
+  color: #070707;
+
+}
+
+#skills {
+
+  height: auto;
+
+  background-color: rgba(230, 235, 235, 0.959);
+
+  grid-area: skills;
+
+}
+
+.skill-container {
+
+  margin: 50px;
+
+}
+
+.skill-container h4 {
+
+  margin-bottom: 10px;
+  
+  font-size: 15px;
+
+  font-weight: 400;
+
+}
+
+.skill-container span {
+
+  background-color: rgba(102, 100, 100, 0.5);
+  
+  padding: 6px 10px 6px 10px;
+  
+  display: inline-block;
+  
+  margin: 3px 5px 3px 5px;
+  
+  border-radius: 15px;
+
+  font-size: 4vw;
+
+  font-family: "Roboto", sans-serif;
+
+  vertical-align: middle;
+
+}
+
+.skill-container span img {
+
+  height: 5vw;
+
+  width: 5vw;
+
+  vertical-align: middle;
+
+}
+
+#projects {
+
+  height: auto;
+
+  background-color: rgba(230, 235, 235, 0.959);
+
+}
+
+#contact {
+
+  height: auto;
+
+  background-image: url("https://img.freepik.com/free-vector/dark-hexagonal-background-with-gradient-color_79603-1410.jpg?w=826&t=st=1695999824~exp=1696000424~hmac=46499b6766339356d7de0e6a84a7561c310b94eae75516c66a1d500b1b40d276");
+
+  background-size: cover;
+
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+  padding: 100px;
+
+}
+
+.footer {
+
+  background-color: black;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  justify-content: space-evenly;
+
+}
+
+.footer main {
+
+  height: 60px;
+
+  width: 100%;
+
+  padding-left: 25%;
+
+  padding-right: 25%;
+
+  z-index: 10000;
+
+  background-color: black;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.footer img {
+
+  height: 40px;
+
+  width: 40px;
+
+}
+
+.footer p {
+
+  background-color: black;
+
+  color: rgb(226, 149, 4);
+
+  font-size: 10px;
+
+  padding-bottom: 10px;
+
+}
+
+.project-main {
+
+  align-items: center;
+
+  justify-content: center;
+
+  display: grid;
+
+  grid-template-areas: 
+  
+    "project1"
+
+    "project2";
+
+  grid-gap: 15vw;
+
+}
+
+.project-main h4 {
+
+  color: black;
+
+  font-size: 15px;
+
+  margin-top: 10px;
+
+  margin-bottom: 40px;
+
+  text-align: center;
+
+}
+
+#project1 {
+
+  grid-area: project1;
+
+  height: 200px;
+
+  width: 300px;
+
+}
+
+#project2 {
+
+  grid-area: project2;
+
+  height: 200px;
+
+  width: 300px;
+
+}
+
+.reliquary {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+}
+
+
+@media only screen and (min-width: 450px) {
+  
+  .nav-bar {
+  
+    height: 150px;
+    
+  }
+  
+  .nav-logo img {
+  
+    height: 150px;
+  
+  }
+  
+  .burger-menu {
+  
+    display: none;
+    
+  }
+
+  .menu-list {
+
+    display: block;
+
+    position: static;
+
+    padding-top: 50px;
+
+    height:auto;
+
+    padding-bottom: 10px;
+
+    padding-right: 40px;
+
+  }
+  
+  .menu-list ul {
+  
+    flex-direction: row;
+
+    justify-content: end;
+  
+  }
+
+  #omission {
+
+    display: none;
+
+    padding: 0;
+
+  }
+  
+  .menu-list li {
+
+    font-size: 0.9vw;
+  
+    padding: 15px;
+  
+  }
+  
+  #welcome-page {
+  
+    margin-top: 60px;
+  
+    height: 1300px;
+  
+  }
+  
+  .animation-container {
+  
+    padding: 420px 0px 100px 0px;
+  
+    font-size: 3vw;
+
+  }
+  
+  #about-me {
+  
+    padding-top: 80px;
+
+    height: auto;
+  
+  }
+  
+  .sxn-line {
+  
+    width: 100px;
+  
+    height: 10px;
+  
+  }
+  
+  h3 {
+  
+    font-size: 50px;
+  
+  }
+  
+  .sxn-container {
+  
+    width: 60%;
+
+    padding-top: 50px;
+  
+  }
+  
+  .sxn-container p {
+  
+    font-size: 32px;
+  
+  }
+  
+  #resume {
+
+    padding: 200px;
+  
+  }
+  
+  a.button {
+
+    font-size: 1.2vw;
+
+    padding: 10px 20px;
+
+    border-radius: 15px;
+
+  }
+  
+  #skills {
+
+    padding-top: 80px;
+  
+  }
+  
+  .skill-container {
+  
+    width: 90%;
+
+    padding-left: 10%;
+
+    padding-right: 10%;
+
+  }
+  
+  .skill-container h4 {
+    
+    font-size: 40px;
+  
+  }
+  
+  .skill-container span {
+
+    padding: 10px 15px;
+    
+    border-radius: 30px;
+  
+    font-size: 30px;
+  
+  }
+
+  .skill-container span img {
+
+    height: 3vw;
+
+    width: 3vw;
+
+  }
+  
+  #projects {
+
+    padding: 200px;
+ 
+  }
+  
+  #contact {
+
+    padding: 200px;
+  
+  }
+  
+  .footer main {
+  
+    height: 150px;
+  
+  }
+  
+  .footer img {
+  
+    height: 80px;
+  
+    width: 80px;
+  
+  }
+  
+  .footer p {
+  
+    font-size: 20px;
+  
+    padding-bottom: 15px;
+  
+  }
+  
+  .project-main {
+
+    padding-top: 5vw;
+  
+    align-items: center;
+  
+    justify-content: center;
+  
+    display: grid;
+  
+    grid-template-areas: 
+    
+      "project1 project2";
+
+    grid-gap: 10vw;
+  
+  }
+  
+  .project-main h4 {
+  
+    font-size: 1.5vw;
+  
+  }
+  
+  #project1 {
+  
+    height: 25vw;
+  
+    width: 35vw;
+  
+  }
+  
+  #project2 {
+  
+    height: 25vw;
+  
+    width: 35vw;
+  
+  }
+
+  .grid-container {
+
+    display: grid;
+
+    grid-template-areas: 
+    
+      "about-me skills";
+
+  }
+
+  .flex-container {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+  }
+
+}
