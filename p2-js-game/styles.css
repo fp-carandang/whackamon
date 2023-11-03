@@ -317,3 +317,28 @@ body {
   font-family: 'Pokemon', sans-serif;;
   font-size: 35px;
 }
+
+@media (max-width: 768px) {
+  .title-text {
+  font-size: 50px;
+  }
+  
+  .subtitle-text {
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  #main-screen {
+    background-size: 100%;
+  }
+
+  #game-over-msg {
+    font-size: 20px;
+  }
+
+  .dialog-box p, #instructions-screen p, #message-screen div, #sound-dialog p {
+    font-size: 14px;
+  }
+}
