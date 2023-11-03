@@ -65,8 +65,8 @@ body {
 .subtitle-text {
   font-size: 30px;
   letter-spacing: 2px;
-  margin-top: 0;
-  margin-bottom: 30px;
+  margin-top: 40px;
+  margin-bottom: 20px;
   color: rgb(168, 102, 27);
 }
 
@@ -227,7 +227,7 @@ body {
   padding: 0;
   cursor: pointer;
   color: rgb(199, 196, 196);
-  margin-top: 20px;
+  margin-top: 80px;
   font-family: "Decotura", sans-serif;
   font-size: 20px;
   height: 30px;
@@ -260,6 +260,30 @@ body {
   background: none;
   border: none;
   border-radius: 50px;
+}
+
+#instructions-button, #toggle-music-button-main-screen, #toggle-music-button-main-game, #right-button, #return-button, #left-button {
+  position: relative;
+}
+
+#instructions-button::after, #toggle-music-button-main-screen::after, #toggle-music-button-main-game::after, #right-button::after, #return-button::after, #left-button::after {
+  content: attr(data-label);
+  position: absolute;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+#instructions-button:hover::after, #toggle-music-button-main-screen:hover::after, #toggle-music-button-main-game:hover::after, #right-button:hover::after, #return-button:hover::after, #left-button:hover::after {
+  opacity: 1;
 }
 
 #instructions-button img, #toggle-music-button-main-screen img, #toggle-music-button-main-game img, #right-button img, #return-button img, #left-button img {

@@ -1,7 +1,8 @@
 let timerInterval;
 let moleInterval;
 const timerBaseInterval = 1000;
-const moleBaseInterval = 1000;
+let moleBaseInterval = 1000;
+let lastBox = -1;
 let score = 0;
 let initialTime = 50;
 let remainingTime = 50;
@@ -17,8 +18,8 @@ const imgElementMainScreen = musicButtonMainScreen.querySelector('img');
 const imgElementMainGame = musicButtonMainGame.querySelector('img');
 const mainScreen = document.getElementById('main-screen');
 const mainGame = document.getElementById('main-game');
-const mainBackgroundMusic = new Audio('audio/main-screen-theme.mp3');
-const gameBackgroundMusic = new Audio('audio/main-game-theme.mp3');
+const mainBackgroundMusic = new Audio('audio/main-screen-theme.wav');
+const gameBackgroundMusic = new Audio('audio/main-game-theme.wav');
 
 document.addEventListener("DOMContentLoaded", function() {
   const soundDialog = document.getElementById('sound-dialog');
@@ -38,8 +39,10 @@ function startGameWithMusic() {
 function startGame() {
   const mainScreen = document.getElementById('main-screen');
   const mainGame = document.getElementById('main-game');
+  const messageScreen = document.getElementById('message-screen');
   mainScreen.classList.add('hidden');
   mainGame.classList.remove('hidden');
+  messageScreen.classList.add('hidden');
   mainBackgroundMusic.pause();
   gameBackgroundMusic.currentTime = 0;
   gameBackgroundMusic.play();
@@ -47,6 +50,7 @@ function startGame() {
   startButton.innerText = 'Start';
   startButton.onclick = startGameHandler;
   displayLevelMessage();
+  messageDisplayed = false;
 }
 
 function createGameGrid() {
@@ -96,7 +100,7 @@ function checkScore() {
       const message = createDialogMessage(
         'Congratulations! You qualify for the next level. Do you wish to proceed?'
       );
-      const congratsSound = new Audio('audio/level-advancement.mp3');
+      const congratsSound = new Audio('audio/level-advancement.wav');
       gameBackgroundMusic.pause();
       congratsSound.currentTime = 0
       congratsSound.play();
@@ -111,7 +115,7 @@ function checkScore() {
         document.body.removeChild(dialogBox);
         const gameOverDialogBox = createDialogBox();
         const gameOverMessage = createDialogMessage('Game Over', 'game-over-msg');
-        const gameOverSound = new Audio('audio/game-over-music.mp3');
+        const gameOverSound = new Audio('audio/game-over-music.wav');
         congratsSound.pause();
         gameOverSound.currentTime = 0
         gameOverSound.play();
@@ -135,7 +139,7 @@ function checkScore() {
       document.body.removeChild(dialogBox);
       const gameOverDialogBox = createDialogBox();
       const gameOverMessage = createDialogMessage('Game Over', 'game-over-msg');
-      const gameOverSound = new Audio('audio/game-over-music.mp3');
+      const gameOverSound = new Audio('audio/game-over-music.wav');
       instructionsMusic.pause();
       gameOverSound.currentTime = 0
       gameOverSound.play();
@@ -174,7 +178,6 @@ function setupNextLevel() {
   displayLevelMessage();
 }
 
-
 function startMoles() {
   if (!gameRunning) {
     gameRunning = true;
@@ -182,7 +185,11 @@ function startMoles() {
     startTimer();
     moleInterval = setInterval(() => {
       if (gameRunning) {
-        let randomBox = Math.floor(Math.random() * 9);
+        let randomBox;
+        do {
+          randomBox = Math.floor(Math.random() * 9);
+        } while (randomBox === lastBox);
+
         const box = document.getElementById(`box_${randomBox}`);
         if (box.innerText.trim() === '') {
           box.style.backgroundImage = "url('images/diglett.png')";
@@ -194,6 +201,7 @@ function startMoles() {
             }
           }, moleBaseInterval - (level - 1) * 100);
         }
+        lastBox = randomBox;
       }
     }, moleBaseInterval - (level - 1) * 100);
   }
@@ -205,11 +213,15 @@ function resetGame() {
   gameRunning = false;
   remainingTime = 50;
   score = 0;
+  level = 1;
+  scoreRequirement = 25;
+  initialTime = 50;
+  moleBaseInterval = 1000;
   createGameGrid();
   updateGameUI();
   startButton.innerText = 'Start';
   startButton.onclick = startGameHandler;
-  gameBackgroundMusic.currentTime = 0
+  gameBackgroundMusic.currentTime = 0;
 }
 
 function getScoreRequirement() {
@@ -266,7 +278,7 @@ function boxClickHandler(event) {
     box.style.backgroundImage = "none";
     score++;
     document.getElementById('score').innerText = `Score: ${score}`;
-    const hitSound = new Audio('audio/diglett-sfx.mp3');
+    const hitSound = new Audio('audio/diglett-sfx.wav');
     hitSound.play();
     if (score >= scoreRequirement) {
       checkScore();
@@ -275,7 +287,6 @@ function boxClickHandler(event) {
 }
 
 function updateGameUI() {
-  console.log("Updating UI...");
   const timerElement = document.getElementById('timer');
   const scoreElement = document.getElementById('score');
   const levelElement = document.getElementById('level');
@@ -283,8 +294,6 @@ function updateGameUI() {
     timerElement.innerText = `Time: ${remainingTime}`;
     scoreElement.innerText = `Score: ${score}`;
     levelElement.innerText = `Level: ${level}`;
-  } else {
-    console.log("One or more UI elements not found.");
     }
 }
 
@@ -293,6 +302,12 @@ function returnToMainScreen() {
   const mainGame = document.getElementById('main-game');
   const instructionsScreen = document.getElementById('instructions-screen');
   const startButton = document.getElementById('start-button');
+  const messageScreen = document.getElementById('message-screen');
+
+  if (!messageScreen.classList.contains('hidden')) {
+    messageScreen.classList.add('hidden');
+  }
+
   mainScreen.classList.remove('hidden');
   mainGame.classList.add('hidden');
   instructionsScreen.classList.add('hidden');
@@ -388,15 +403,30 @@ function updateInstructions() {
   updateButtons();
 }
 
+let messageDisplayed = false;
+
 function displayLevelMessage() {
   const messageScreen = document.getElementById('message-screen');
   const message = document.getElementById('message');
   const currentLevel = level;
   const currentScoreRequirement = getScoreRequirement();
   const currentSpeed = (1000 - (currentLevel - 1) * 100) / 1000;
-  
+  const currentTime = remainingTime;
+
+  message.innerText = `Level ${currentLevel} \nScore Requirement: ${currentScoreRequirement} \nMole Speed: ${currentSpeed}s \nTime: ${currentTime}s`;
+
+  const existingOkButton = document.getElementById('ok-button');
+  if (existingOkButton) {
+    existingOkButton.parentNode.removeChild(existingOkButton);
+  }
+
+  const okButton = createDialogButton('OK', () => {
+    messageScreen.classList.add('hidden');
+    startGameHandler();
+  }, null, 'ok-button');
+
+  appendToDialogBox(messageScreen, okButton);
   messageScreen.classList.remove('hidden');
-  message.innerText = `Level ${currentLevel} \nScore Requirement: ${currentScoreRequirement} \nMole Speed: ${currentSpeed}s`;
 }
   
 function closeMessageScreen() {
