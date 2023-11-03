@@ -1,0 +1,344 @@
+@font-face {
+  font-family: 'Pokemon';
+  src: url('fonts/Pokemon\ Solid.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Decotura';
+  src: url('fonts/DecoturaICG.ttf') format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  font-family: "Londrina Solid", sans-serif;
+  background-color: black;
+}
+
+@keyframes animateGradient {
+  0% {
+      background-position: 0%;
+  }
+  100% {
+      background-position: 200%;
+  }
+}
+
+.title-text, #score, #timer, #level {
+  background: linear-gradient(to right, #ffd000fa, #fffb00, #cc7d33, #cc9c33 );
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: animateGradient 5s ease infinite;
+  -webkit-text-stroke: 1px black;
+  text-shadow: 1px black;
+  font-family: 'Pokemon', sans-serif;;
+}
+
+.subtitle-text, #start-game, #ms-button-container {
+  font-family: 'Decotura', sans-serif;
+  animation: fadeIn 5s forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.subtitle-text {
+  font-size: 30px;
+  letter-spacing: 2px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: rgb(168, 102, 27);
+}
+
+#ms-button-container, #ins-btn-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.hidden {
+  display: none;
+}
+
+#main-screen {
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  animation: changeBackground 13s forwards;
+}
+
+@keyframes changeBackground {
+  0% {
+    background-image: none;
+    opacity: 0;
+  }
+  100% {
+    background-image: url('images/bg-diglett.png');
+    opacity: 100%;
+  }
+}
+
+#score-timer-container {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-areas: "box box box"
+                       "box box box"
+                       "box box box";
+  align-items: center;
+  justify-content: space-evenly;
+  width: 400px;
+  height: 400px;
+  border: 2px solid black;
+  background-image: url("images/grass.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.dialog-box, #instructions-screen, #message-screen, #sound-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(31, 30, 30, 0.76);
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+  z-index: 999;
+  max-width: 400px;
+  height: auto;
+  text-align: center;
+  border: 2px solid #000;
+  animation: borderAnimation 2s infinite;
+}
+
+@keyframes borderAnimation {
+  0% {
+    border-color: #000;
+  }
+  25% {
+    border-color: #2f00ff;
+  }
+  50% {
+    border-color: #008cff;
+  }
+  75% {
+    border-color: #00ffff;
+  }
+  100% {
+    border-color: #000;
+  }
+}
+
+.dialog-box p, #instructions-screen p, #message-screen div, #sound-dialog p {
+  margin: 0 0 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+}
+
+.dialog-box button, #instructions-screen button, #message-screen button, #sound-dialog button {
+  display: block;
+  margin: 0 auto;
+}
+
+.dialog-box button, #message-screen button, #sound-dialog button:hover {
+  background-color: rgb(36, 32, 233);
+}
+
+.dialog-box button, #message-screen button, #sound-dialog button {
+  font-weight: bold;
+  background-color: rgb(86, 85, 175);
+  border-radius: 20px;
+  color: white;
+  padding: 5px;
+}
+
+.custom-cursor {
+  cursor: url("images/hammer-cursor.png"), auto;
+}
+
+.custom-cursor:active {
+  cursor: url("images/hammer-cursor-clicked.png"), auto;
+  animation: clickAnimation 0.5s linear;
+}
+
+@keyframes clickAnimation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+#instruction-img {
+  width: 200px;
+  height: 200px;
+}
+
+#start-game {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: rgb(199, 196, 196);
+  margin-top: 80px;
+  font-family: "Decotura", sans-serif;
+  font-size: 20px;
+  height: 30px;
+  transition: color 0.3s;
+}
+
+#start-game:hover {
+  color: white;
+  transform: scale(1.2);
+}
+
+#start-button {
+  background: linear-gradient(to right, #ffd000fa, #fffb00, #cc7d33, #cc9c33 );
+  background-size: 200%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: animateGradient 5s ease infinite;
+  -webkit-text-stroke: 1px black;
+  text-shadow: 1px black;
+  font-family: 'Pokemon', sans-serif;;
+  font-size: 20px;
+}
+
+#instructions-button, #toggle-music-button-main-screen, #toggle-music-button-main-game, #right-button, #return-button, #left-button {
+  background: none;
+  border: none;
+  border-radius: 50px;
+}
+
+#instructions-button, #toggle-music-button-main-screen, #toggle-music-button-main-game, #right-button, #return-button, #left-button {
+  position: relative;
+}
+
+#instructions-button::after, #toggle-music-button-main-screen::after, #toggle-music-button-main-game::after, #right-button::after, #return-button::after, #left-button::after {
+  content: attr(data-label);
+  position: absolute;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border-radius: 5px;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+}
+
+#instructions-button:hover::after, #toggle-music-button-main-screen:hover::after, #toggle-music-button-main-game:hover::after, #right-button:hover::after, #return-button:hover::after, #left-button:hover::after {
+  opacity: 1;
+}
+
+#instructions-button img, #toggle-music-button-main-screen img, #toggle-music-button-main-game img, #right-button img, #return-button img, #left-button img {
+  height: 40px;
+  width: 40px;
+}
+
+#level, #score, #timer {
+  font-size: 18px;
+}
+
+.title-text {
+  font-size: 80px;
+  letter-spacing: 7px;
+  margin-bottom: 50px;
+}
+
+#game-over-msg {
+  background: linear-gradient(to right, #b80505, #e40404, #ff0000, #c73333, #df3737 );
+  background-size: 200%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: animateGradient 5s ease infinite;
+  -webkit-text-stroke: 1px black;
+  text-shadow: 1px black;
+  font-family: 'Pokemon', sans-serif;;
+  font-size: 35px;
+}
+
+@media (max-width: 768px) {
+  .title-text {
+  font-size: 50px;
+  }
+  
+  .subtitle-text {
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  #main-screen {
+    background-size: 100%;
+  }
+
+  #game-over-msg {
+    font-size: 20px;
+  }
+
+  .dialog-box p, #instructions-screen p, #message-screen div, #sound-dialog p {
+    font-size: 14px;
+  }
+}
